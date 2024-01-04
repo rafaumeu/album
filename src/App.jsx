@@ -18,8 +18,8 @@ function App() {
     })
   }
   useEffect(() => {
-    fetchData(query, categoria)
-  }, [])
+    fetchData({ query, categoria })
+  }, [query, categoria])
 
   return (
     <div className='container'>
