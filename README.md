@@ -46,13 +46,17 @@ git clone https://github.com/rafaumeu/album.git
     
 4.  Configure as variáveis de ambiente:
     
-    *   Crie um arquivo `.env` na raiz do projeto.
+    *   Crie um arquivo `.config.js` na raiz do projeto.
         
-    *   Obtenha uma chave de API do Unsplash Developer e adicione-a ao arquivo `.env`:
+    *   Obtenha uma chave de API do Unsplash Developer e adicione-a ao arquivo `.config.js`:
         
-        envCopy code
-        
-        `REACT_APP_UNSPLASH_ACCESS_KEY=sua-chave-de-acesso`
+        ```js
+            const config = {
+              'REACT_APP_UNSPLASH_ACCESS_KEY': 'SUA_ACCESS_KEY_AQUI'
+            }
+            export default config;
+
+        ```
         
 
 Uso
