@@ -58,7 +58,7 @@ describe('App Component', () => {
     await waitFor(() =>
       expect(axios.get).toHaveBeenCalledWith(
         'https://api.unsplash.com/photos/random',
-        { params: { client_id: 'sua-chave-de-acesso-mock', count: 10 } }
+        { params: { client_id: 'sua-chave-de-acesso-mock', count: 12 } }
       )
     )
   })

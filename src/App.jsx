@@ -19,12 +19,11 @@ function App() {
       const response = await axios.get(apiUrl, {
         params: {
           client_id: apiKey,
-          count: 10,
+          count: 12,
         },
       })
 
       setFotos(response.data)
-      console.log(response.data)
     } catch (error) {
       console.error('Erro ao buscar dados:', error)
       setFotos([]) // Definir fotos como um array vazio em caso de erro
