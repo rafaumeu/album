@@ -3,11 +3,13 @@ import React from 'react'
 
 import Foto from './Foto'
 
-const FotoList = ({ fotos }) => {
+const FotoList = ({ fotos, setFotoAmpliada }) => {
   return (
     <div className='album'>
       {Array.isArray(fotos) &&
-        fotos.map((foto) => <Foto key={foto.id} dados={foto} />)}
+        fotos.map((foto) => (
+          <Foto key={foto.id} dados={foto} setFotoAmpliada={setFotoAmpliada} />
+        ))}
     </div>
   )
 }
@@ -22,6 +24,7 @@ FotoList.propTypes = {
       alt_description: PropTypes.string,
     })
   ).isRequired,
+  setFotoAmpliada: PropTypes.func.isRequired,
 }
 
 export default FotoList
