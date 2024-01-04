@@ -10,6 +10,7 @@ function App() {
   const [query, setQuery] = useState('')
   const [categoria, setCategoria] = useState('')
   const [fotos, setFotos] = useState([])
+  const [fotoAmpliada, setFotoAmpliada] = useState(null)
 
   const fetchData = async ({ query, categoria }) => {
     const apiKey = config.REACT_APP_UNSPLASH_ACCESS_KEY
@@ -37,8 +38,10 @@ function App() {
   return (
     <div className='container'>
       <SearchBar />
-      <FotoList fotos={fotos} />
-      <FotoAmpliada />
+      <FotoList fotos={fotos} setFotoAmpliada={setFotoAmpliada} />
+      {fotoAmpliada && (
+        <FotoAmpliada foto={fotoAmpliada} setFotoAmpliada={setFotoAmpliada} />
+      )}
     </div>
   )
 }
