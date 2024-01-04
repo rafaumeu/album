@@ -9,14 +9,28 @@ import SearchBar from './components/SearchBar'
 function App() {
   const [query, setQuery] = useState('')
   const [categoria, setCategoria] = useState('')
+  const [fotos, setFotos] = useState([])
+
   const fetchData = async ({ query, categoria }) => {
     const apiKey = config.REACT_APP_UNSPLASH_ACCESS_KEY
-    const response = await axios.get(`https://api.unsplash.com/photos/random`, {
-      params: {
-        client_id: apiKey,
-      },
-    })
+    const apiUrl = 'https://api.unsplash.com/photos/random'
+
+    try {
+      const response = await axios.get(apiUrl, {
+        params: {
+          client_id: apiKey,
+          count: 10,
+        },
+      })
+
+      setFotos(response.data)
+      console.log(response.data)
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error)
+      setFotos([]) // Definir fotos como um array vazio em caso de erro
+    }
   }
+
   useEffect(() => {
     fetchData({ query, categoria })
   }, [query, categoria])
@@ -24,7 +38,7 @@ function App() {
   return (
     <div className='container'>
       <SearchBar />
-      <FotoList />
+      <FotoList fotos={fotos} />
       <FotoAmpliada />
     </div>
   )
