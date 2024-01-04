@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1704370487522" clover="3.2.0">
+  <project timestamp="1704370487522" name="All files">
+    <metrics statements="38" coveredstatements="38" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4" elements="46" coveredelements="46" complexity="0" loc="38" ncloc="38" packages="2" files="4" classes="4"/>
+    <package name="src">
+      <metrics statements="17" coveredstatements="17" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="App.jsx" path="/home/rafaelejosi/Projetos React/album/src/App.jsx">
+        <metrics statements="17" coveredstatements="17" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="21" coveredstatements="21" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <file name="FotoAmpliada.jsx" path="/home/rafaelejosi/Projetos React/album/src/components/FotoAmpliada.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="FotoList.jsx" path="/home/rafaelejosi/Projetos React/album/src/components/FotoList.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="SearchBar.jsx" path="/home/rafaelejosi/Projetos React/album/src/components/SearchBar.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
