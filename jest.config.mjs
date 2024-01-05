@@ -14,7 +14,7 @@ const config = {
     '^.+\\.mjs?$': 'babel-jest',
   },
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.js'],
-  timers: 'modern', // Isso habilita a modernização dos temporizadores para Jest 27+
+  // Isso habilita a modernização dos temporizadores para o Jest 27+
 }
 
 export default config
