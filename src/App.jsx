@@ -35,6 +35,7 @@ function App() {
           }
         )
         setFotos(response.data.results)
+        return
       }
       const response = await axios.get(apiUrl, {
         params: {
