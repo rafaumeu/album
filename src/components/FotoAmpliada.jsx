@@ -17,7 +17,7 @@ const FotoAmpliada = ({ foto, setFotoAmpliada }) => {
 FotoAmpliada.propTypes = {
   foto: PropTypes.shape({
     urls: PropTypes.shape({
-      regular: PropTypes.string.isRequired,
+      regular: PropTypes.string,
     }).isRequired,
     alt_description: PropTypes.string,
   }).isRequired,

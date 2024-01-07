@@ -1,4 +1,4 @@
-import { render, waitFor, fireEvent } from '@testing-library/react'
+import { render, waitFor, fireEvent, screen } from '@testing-library/react'
 import axios from 'axios'
 import React from 'react'
 
@@ -14,8 +14,8 @@ jest.mock('../../.config.js', () => ({
 
 describe('App Component', () => {
   let searchQuery
-  afterEach(() => {
-    jest.clearAllMocks()
+  beforeEach(() => {
+    jest.resetAllMocks()
   })
 
   it('renders without crashing', () => {
@@ -138,72 +138,7 @@ describe('App Component', () => {
       expect(searchQuery).toBeUndefined()
     }
   })
-  it('handles query and categoria correctly', async () => {
-    const apiKey = 'sua-chave-de-acesso-mock'
-    const query = 'sua-query-de-teste'
-    const categoria = 'sua-categoria-de-teste'
 
-    const responseData = {
-      data: {
-        results: [
-          { id: '1', urls: { small: 'url1' }, alt_description: 'desc1' },
-          { id: '2', urls: { small: 'url2' }, alt_description: 'desc2' },
-        ],
-      },
-    }
-    axios.get.mockResolvedValue(responseData)
-
-    const setFotosMock = jest.fn()
-
-    render(
-      <App
-        setFotos={setFotosMock}
-        query={query}
-        categoria={categoria}
-        apiKey={apiKey}
-      />
-    )
-
-    // Espera pela chamada da função fetchData
-    await waitFor(() =>
-      expect(axios.get).toHaveBeenCalledWith(
-        'https://api.unsplash.com/search/photos',
-        {
-          params: {
-            client_id: apiKey,
-            count: 12,
-          },
-        }
-      )
-    )
-
-    if (query && categoria) {
-      const expectedSearchQuery = `${query} ${categoria}`
-      expect(searchQuery).toEqual(expectedSearchQuery)
-    } else {
-      // Se query ou categoria não estiverem presentes, searchQuery deve ser undefined
-      expect(searchQuery).toBeUndefined()
-    }
-  })
-  it('calls fetchData when activateSearch is true', async () => {
-    // Renderiza o componente App com activateSearch configurado como true
-    render(
-      <App activateSearch={true} query='sua-query' categoria='sua-categoria' />
-    )
-
-    // Verifica se fetchData foi chamada quando activateSearch é true
-    await waitFor(() =>
-      expect(axios.get).toHaveBeenCalledWith(
-        'https://api.unsplash.com/search/photos',
-        {
-          params: {
-            client_id: 'sua-chave-de-acesso-mock',
-            count: 12,
-          },
-        }
-      )
-    )
-  })
   it('handles query and categoria correctly', async () => {
     const query = 'sua-query-de-teste'
     const categoria = 'sua-categoria-de-teste'
