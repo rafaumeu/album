@@ -14,7 +14,9 @@
  Bem-vindo ao Álbum de Imagens, uma aplicação React simples que permite explorar e visualizar imagens da API do Unsplash.  
 
 ## Funcionalidades  
-- Exibição de imagens em um layout de álbum. - Input de busca para encontrar imagens específicas. - Select para filtrar imagens por categoria.  ## Configuração
+- Exibição de imagens em um layout de álbum. - Input de busca para encontrar imagens específicas. - Select para filtrar imagens por categoria.
+
+## Configuração
 
 ### Pré-requisitos  
 - Node.js e npm instalados.  
