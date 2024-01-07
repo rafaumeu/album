@@ -16,24 +16,26 @@ function App() {
   const fetchData = async ({ query, categoria }) => {
     const apiKey = config.REACT_APP_UNSPLASH_ACCESS_KEY
     const apiUrl = 'https://api.unsplash.com/photos/random'
-    if (query || categoria) {
-      let searchQuery = query
-      if (query && categoria) {
-        searchQuery = `${query} ${categoria}`
-      } else if (categoria) {
-        searchQuery = categoria
-      }
-      setFotos(response.data.results)
-      console.log('setFotos chamado com sucesso:', searchQuery)
-    }
-    const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: {
-        client_id: apiKey,
-        count: 12,
-      },
-    })
 
     try {
+      if (query || categoria) {
+        let searchQuery = query
+        if (query && categoria) {
+          searchQuery = `${query} ${categoria}`
+        } else if (categoria) {
+          searchQuery = categoria
+        }
+        const response = await axios.get(
+          'https://api.unsplash.com/search/photos',
+          {
+            params: {
+              client_id: apiKey,
+              query: searchQuery,
+            },
+          }
+        )
+        setFotos(response.data.results)
+      }
       const response = await axios.get(apiUrl, {
         params: {
           client_id: apiKey,
@@ -43,8 +45,7 @@ function App() {
 
       setFotos(response.data)
     } catch (error) {
-      console.error('Erro ao buscar dados:', error)
-      setFotos([]) // Definir fotos como um array vazio em caso de erro
+      console.log('Erro ao buscar dados:', error)
     }
   }
 
