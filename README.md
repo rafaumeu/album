@@ -9,6 +9,8 @@
 
 
 # Álbum de Imagens 
+![2024-01-07_08-49](https://github.com/rafaumeu/album/assets/30784471/f53c50e6-7bd4-46d5-b123-9431dfafa602)
+
  Bem-vindo ao Álbum de Imagens, uma aplicação React simples que permite explorar e visualizar imagens da API do Unsplash.  
 
 ## Funcionalidades  
