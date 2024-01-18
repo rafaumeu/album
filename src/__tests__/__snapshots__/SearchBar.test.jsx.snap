@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<SearchBar /> > should to be matches snapshot 1`] = `
+<div>
+  <div
+    class="search-bar"
+  >
+    <input
+      placeholder="Pesquisar fotos..."
+      type="text"
+      value="pesquisa"
+    />
+    <button>
+      Pesquisar
+    </button>
+    <select>
+      <option
+        value=""
+      >
+        Todas as categorias
+      </option>
+      <option
+        value="Natureza"
+      >
+        Natureza
+      </option>
+      <option
+        value="Pessoas"
+      >
+        Pessoas
+      </option>
+      <option
+        value="Animais"
+      >
+        Animais
+      </option>
+      <option
+        value="Esportes"
+      >
+        Esportes
+      </option>
+      <option
+        value="Tecnologia"
+      >
+        Tecnologia
+      </option>
+    </select>
+  </div>
+</div>
+`;

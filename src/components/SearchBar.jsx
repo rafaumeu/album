@@ -1,21 +1,40 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 const SearchBar = ({ setQuery, setCategoria, setActivateSearch }) => {
-  const categorias = ['Natureza', 'Pessoas', 'Animais', 'Esportes']
+  const [localQuery, setLocalQuery] = useState('')
+  const categorias = [
+    'Natureza',
+    'Pessoas',
+    'Animais',
+    'Esportes',
+    'Tecnologia',
+  ]
   return (
     <div className='search-bar'>
       <input
         type='text'
         placeholder='Pesquisar fotos...'
-        onChange={(e) => setQuery(e.target.value)}
+        value={localQuery}
+        onChange={(e) => {
+          setQuery(localQuery)
+          setLocalQuery(e.target.value)
+        }}
       />
-      <button onClick={() => setActivateSearch(true)}>Pesquisar</button>
+      <button
+        onClick={() => {
+          setQuery(localQuery)
+          setActivateSearch(true)
+        }}
+      >
+        Pesquisar
+      </button>
       <select
         onChange={(e) => {
           setCategoria(e.target.value)
           setActivateSearch(true)
         }}
       >
+        <option value=''>Todas as categorias</option>
         {categorias.map((categoria) => (
           <option value={categoria} key={categoria}>
             {categoria}

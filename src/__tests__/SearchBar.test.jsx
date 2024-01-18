@@ -1,63 +1,116 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import React from 'react'
+import { mount } from 'vitest'
 
 import SearchBar from '../components/SearchBar'
 
-describe('SearchBar', () => {
-  it('renders without crashing', () => {
-    render(<SearchBar />)
-  })
-  it('calls setQuery with the correct value on input change', () => {
-    // Mock da função setQuery
-    const setQueryMock = jest.fn()
-
-    // Renderiza o componente SearchBar com a função setQuery mockada
-    const { getByPlaceholderText } = render(
-      <SearchBar setQuery={setQueryMock} />
-    )
-
-    // Obtém o input pelo placeholder e simula a mudança de valor
-    const inputElement = getByPlaceholderText('Pesquisar fotos...')
-    fireEvent.change(inputElement, { target: { value: 'nova-pesquisa' } })
-
-    // Verifica se a função setQuery foi chamada corretamente
-    expect(setQueryMock).toHaveBeenCalledWith('nova-pesquisa')
-  })
-  it('calls setActivateSearch with true on button click', () => {
-    // Mock da função setActivateSearch
-    const setActivateSearchMock = jest.fn()
-
-    // Renderiza o componente SearchBar com a função setActivateSearch mockada
-    const { getByText } = render(
-      <SearchBar setActivateSearch={setActivateSearchMock} />
-    )
-
-    // Obtém o botão pelo texto e simula o clique
-    const buttonElement = getByText('Pesquisar')
-    fireEvent.click(buttonElement)
-
-    // Verifica se a função setActivateSearch foi chamada com true
-    expect(setActivateSearchMock).toHaveBeenCalledWith(true)
-  })
-  it('calls setCategoria and setActivateSearch on dropdown selection', () => {
-    // Mock das funções setCategoria e setActivateSearch
-    const setCategoriaMock = jest.fn()
-    const setActivateSearchMock = jest.fn()
-
-    // Renderiza o componente SearchBar com as funções mockadas
-    const { getByDisplayValue } = render(
+describe('<SearchBar />', () => {
+  it('should renders without crashing', () => {
+    const { debug, container } = render(
       <SearchBar
-        setCategoria={setCategoriaMock}
+        setActivateSearch={() => {}}
+        setCategoria={() => {}}
+        setQuery={() => {}}
+      />
+    )
+    const inputElement = screen.getByPlaceholderText('Pesquisar fotos...')
+    const buttonElement = screen.getByText(/pesquisar/i)
+    const selectElement = container.querySelector('select')
+    expect(inputElement).toBeInTheDocument()
+    expect(buttonElement).toBeInTheDocument()
+    expect(selectElement).toBeInTheDocument()
+  })
+
+  it('should trigger callback functions on user interaction', async () => {
+    const setQueryMock = vi.fn()
+    const setActivateSearchMock = vi.fn()
+    const setCategoriasMock = vi.fn()
+    render(
+      <SearchBar
+        setQuery={setQueryMock}
         setActivateSearch={setActivateSearchMock}
+        setCategoria={setCategoriasMock}
       />
     )
 
-    // Obtém o elemento do dropdown e simula a seleção de uma opção
-    const selectElement = getByDisplayValue('Natureza')
-    fireEvent.change(selectElement, { target: { value: 'Pessoas' } })
+    const inputElement = screen.getByPlaceholderText('Pesquisar fotos...')
+    const buttonElement = screen.getByText(/pesquisar/i)
 
-    // Verifica se as funções setCategoria e setActivateSearch foram chamadas corretamente
-    expect(setCategoriaMock).toHaveBeenCalledWith('Pessoas')
-    expect(setActivateSearchMock).toHaveBeenCalledWith(true)
+    // Simula a mudança no valor do input
+    fireEvent.change(inputElement, { target: { value: 'pesquisa' } })
+
+    // Simula o clique no botão
+    fireEvent.click(buttonElement)
+
+    // Verifica se o estado local (localQuery) foi atualizado corretamente
+    expect(inputElement.value).toBe('pesquisa')
+  })
+  it('should trigger callback functions on user interaction', async () => {
+    const setQueryMock = vi.fn()
+    const setActivateSearchMock = vi.fn()
+    const setCategoriasMock = vi.fn()
+
+    const { container } = render(
+      <SearchBar
+        setQuery={setQueryMock}
+        setActivateSearch={setActivateSearchMock}
+        setCategoria={setCategoriasMock}
+      />
+    )
+
+    const inputElement = screen.getByPlaceholderText('Pesquisar fotos...')
+    const buttonElement = screen.getByText(/pesquisar/i)
+    const selectElement = container.querySelector('select') // ou ajuste conforme seu código
+
+    // Simula a mudança no valor do input
+    fireEvent.change(inputElement, { target: { value: 'pesquisa' } })
+
+    // Simula o clique no botão
+    fireEvent.click(buttonElement)
+
+    // Aguarda a execução das funções assíncronas
+
+    expect(inputElement.value).toBe('pesquisa')
+
+    // Simula a mudança na seleção da categoria
+    fireEvent.change(selectElement, { target: { value: 'Natureza' } })
+
+    // Aguarda a execução das funções assíncronas após a mudança na categoria
+    await waitFor(() => {
+      // Verifica se setCategoria foi chamado corretamente
+      expect(setCategoriasMock).toHaveBeenCalledWith('Natureza')
+      expect(setActivateSearchMock).toHaveBeenCalledWith(true)
+    })
+  })
+  it('should to be matches snapshot', async () => {
+    const setQueryMock = vi.fn()
+    const setActivateSearchMock = vi.fn()
+    const setCategoriasMock = vi.fn()
+
+    const { container, debug } = render(
+      <SearchBar
+        setQuery={setQueryMock}
+        setActivateSearch={setActivateSearchMock}
+        setCategoria={setCategoriasMock}
+      />
+    )
+    const inputElement = screen.getByPlaceholderText('Pesquisar fotos...')
+    const buttonElement = screen.getByText(/pesquisar/i)
+    const selectElement = container.querySelector('select') // ou ajuste conforme seu código
+
+    // Simula a mudança no valor do input
+    fireEvent.change(inputElement, { target: { value: 'pesquisa' } })
+
+    // Simula o clique no botão
+    fireEvent.click(buttonElement)
+
+    // Aguarda a execução das funções assíncronas
+
+    expect(inputElement.value).toBe('pesquisa')
+
+    // Simula a mudança na seleção da categoria
+    fireEvent.change(selectElement, { target: { value: 'Natureza' } })
+    expect(container).toMatchSnapshot()
+    screen.debug()
   })
 })

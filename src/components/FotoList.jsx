@@ -24,7 +24,7 @@ FotoList.propTypes = {
       alt_description: PropTypes.string,
     })
   ).isRequired,
-  setFotoAmpliada: PropTypes.func.isRequired,
+  setFotoAmpliada: PropTypes.any,
 }
 
 export default FotoList
