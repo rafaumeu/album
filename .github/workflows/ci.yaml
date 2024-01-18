@@ -25,7 +25,7 @@ jobs:
         run: npm run lint 
 
       - name: Run Tests
-        run: NODE_OPTIONS='--loader=commonjs' npm test
+        run: npm test --loader=commonjs
 
       - name: Build
         run: npm run build 
