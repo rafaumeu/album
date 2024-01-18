@@ -8,7 +8,7 @@ const FotoAmpliada = ({ foto, setFotoAmpliada }) => {
       onClick={() => setFotoAmpliada(null)}
     >
       <div className='foto-ampliada-container'>
-        <img src={foto.urls.regular} alt={foto.alt_description} />
+        {foto && <img src={foto.urls.regular} alt={foto.alt_description} />}
       </div>
     </div>
   )
@@ -21,7 +21,7 @@ FotoAmpliada.propTypes = {
     }).isRequired,
     alt_description: PropTypes.string,
   }).isRequired,
-  setFotoAmpliada: PropTypes.func.isRequired,
+  setFotoAmpliada: PropTypes.func,
 }
 
 export default FotoAmpliada

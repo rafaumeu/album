@@ -25,16 +25,26 @@ function App() {
         } else if (categoria) {
           searchQuery = categoria
         }
-        const response = await axios.get(
-          'https://api.unsplash.com/search/photos',
-          {
-            params: {
-              client_id: apiKey,
-              query: searchQuery,
-            },
+        try {
+          const response = await axios.get(
+            'https://api.unsplash.com/search/photos',
+            {
+              params: {
+                client_id: apiKey,
+                query: searchQuery,
+              },
+            }
+          )
+          if (
+            response.status === 200 &&
+            response.data &&
+            response.data.results
+          ) {
+            setFotos(response.data.results)
           }
-        )
-        setFotos(response.data.results)
+        } catch (error) {
+          console.error('Ocorreu um erro ao Buscar as fotos: ', error)
+        }
         return
       }
       const response = await axios.get(apiUrl, {
@@ -43,10 +53,11 @@ function App() {
           count: 12,
         },
       })
-
-      setFotos(response.data)
+      if (response.status === 200 && response.data) {
+        setFotos(response.data)
+      }
     } catch (error) {
-      console.log('Erro ao buscar dados:', error)
+      console.error('Ocorreu um erro ao buscar as fotos aleatórias: ', error)
     }
   }
 
@@ -56,6 +67,7 @@ function App() {
   useEffect(() => {
     if (activateSearch) {
       fetchData({ query, categoria })
+      setActivateSearch(false)
     }
   }, [activateSearch, query, categoria])
   return (
@@ -65,7 +77,10 @@ function App() {
         setCategoria={setCategoria}
         setActivateSearch={setActivateSearch}
       />
-      <FotoList fotos={fotos} setFotoAmpliada={setFotoAmpliada} />
+      {fotos.length > 0 && (
+        <FotoList fotos={fotos} setFotoAmpliada={setFotoAmpliada} />
+      )}
+      {fotos.length === 0 && <h2>Não foi possível encontrar fotos</h2>}
       {fotoAmpliada && (
         <FotoAmpliada foto={fotoAmpliada} setFotoAmpliada={setFotoAmpliada} />
       )}
